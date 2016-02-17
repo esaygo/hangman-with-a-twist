@@ -24,9 +24,19 @@ function addAlphabet(alphabet) {
     var letterContainer = document.createElement('kbd');
     keypad.appendChild(letterContainer);
     letterContainer.innerHTML += alphabet[i];
-    $("kbd").addClass("light");
-    }
+    $("kbd").addClass("light").addClass("letters");
+    //add unique id for each letter http://stackoverflow.com/questions/28536878/add-div-id-dynamically-using-jquery-to-the-class-element
+    $('.letters:eq(' + alphabet[i]+ ')').attr('id', alphabet[i]);
+  }
 }
+
+//add event listeners for clicking the letters
+$(".light").bind('click', function() {
+  alert( $(this).text() );
+});
+//when a letter is clicked, check if that letter is contained in the randWord
+  //if it is contained, replace the udderscore with the letter
+  //if not .....
 
 //constructor function for the words objects
 function Words(word,tag,difficulty) {
@@ -43,23 +53,23 @@ for(var i = 0; i < wordsArray.length; i++) {
 
 function generateNewWord() {
   //add 'play' button
-  var $playButton = $('<input type = "button" value = "New Word" />');
+  var $playButton = $('<input type = "button" value = "Play" />');
   $("#play").append($playButton).addClass("play-button");
 //add event listener to button
 //when clicked, add event handler to generate new word randomly
-  $(this).bind('click', function() {
+  $("#play").bind('click', function() {
       var randWord = newWord[Math.floor(Math.random() * wordsArray.length)].word;
       var wordPlaceholder = document.getElementById('word');
       var placeholder = "";
       for(var i = 0; i < randWord.length; i++) {
-        placeholder += "-";
+        placeholder += "_";
       }
       wordPlaceholder.innerHTML = placeholder;
 //clear canvas and last play
 
   });
-
-
 }
+
+
 addAlphabet(alphabet);
 generateNewWord();
