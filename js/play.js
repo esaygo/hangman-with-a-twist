@@ -92,8 +92,9 @@ function generateNewWord() {
     for(var j = 0; j < $('#guess-word').text().length; j++) {
       // console.log($('#guess-word').text()[j] == idLetter);
       if($('#guess-word').text()[j] === idLetter ) {
-
-          alert("you guessed: " + idLetter);
+            $('#word').text(function() {
+              return $(this).text().replace($('#word').text()[j], idLetter);
+            });
         }
     }
   });
