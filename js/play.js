@@ -33,6 +33,10 @@ function addAlphabet(alphabet) {
       return alphabet[i];
     });
   }
+    $(".letters").click(function(){
+      var idLetter = $(this).attr('id');
+      alert(idLetter);
+    });
 }
 
 //add event listeners for clicking the letters
