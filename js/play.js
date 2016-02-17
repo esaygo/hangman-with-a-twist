@@ -43,7 +43,7 @@ for(var i = 0; i < wordsArray.length; i++) {
 
 function generateNewWord() {
   //add 'play' button
-  var $playButton = $('<input type = "button" value = "New Word" />');
+  var $playButton = $('<input type = "button" value = "Play" />');
   $("#play").append($playButton).addClass("play-button");
 //add event listener to button
 //when clicked, add event handler to generate new word randomly
@@ -52,7 +52,7 @@ function generateNewWord() {
       var wordPlaceholder = document.getElementById('word');
       var placeholder = "";
       for(var i = 0; i < randWord.length; i++) {
-        placeholder += "-";
+        placeholder += "_";
       }
       wordPlaceholder.innerHTML = placeholder;
 //clear canvas and last play
