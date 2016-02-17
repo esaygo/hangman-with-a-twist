@@ -33,11 +33,10 @@ function addAlphabet(alphabet) {
       return alphabet[i];
     });
   }
-    $(".letters").click(function(){
-      var idLetter = $(this).attr('id');
-      alert(idLetter);
-    });
+
 }
+
+
 
 //add event listeners for clicking the letters
 
@@ -72,11 +71,35 @@ function generateNewWord() {
         placeholder += "_";
       }
       wordPlaceholder.innerHTML = placeholder;
-//clear canvas and last play
+
+      var $wordToGuess = $('<p></p>');
+      $('#test').append($wordToGuess).attr('id', 'guess-word');
+      $('#guess-word').text(randWord).hide();
+      console.log($('#guess-word').text());
+
+      //clear canvas and last play
 
   });
 }
 
+  function play() {
+
+    //selected letter
+    $(".letters").bind('click',function() {
+      var idLetter = $(this).attr('id');
+      console.log(idLetter);
+
+    for(var j = 0; j < $('#guess-word').text().length; j++) {
+      // console.log($('#guess-word').text()[j] == idLetter);
+      if($('#guess-word').text()[j] === idLetter ) {
+
+          alert("you guessed: " + idLetter);
+        }
+    }
+  });
+
+}
 
 addAlphabet(alphabet);
 generateNewWord();
+play();
