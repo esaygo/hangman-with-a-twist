@@ -19,21 +19,24 @@ var newWord = [];
 function addAlphabet(alphabet) {
   var keypad = document.getElementById('keypad');
 
-
   for(var i = 0; i < alphabet.length; i++) {
     var letterContainer = document.createElement('kbd');
     keypad.appendChild(letterContainer);
+
     letterContainer.innerHTML += alphabet[i];
+
     $("kbd").addClass("light").addClass("letters");
+
     //add unique id for each letter http://stackoverflow.com/questions/28536878/add-div-id-dynamically-using-jquery-to-the-class-element
-    $('.letters:eq(' + alphabet[i]+ ')').attr('id', alphabet[i]);
+    // $('.letters:eq(' + alphabet[i] + ')').attr('id', alphabet[i]);
+    $('.letters').attr('id', function(i) {
+      return alphabet[i];
+    });
   }
 }
 
 //add event listeners for clicking the letters
-$(".light").bind('click', function() {
-  alert( $(this).text() );
-});
+
 //when a letter is clicked, check if that letter is contained in the randWord
   //if it is contained, replace the udderscore with the letter
   //if not .....
