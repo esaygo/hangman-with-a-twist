@@ -1,0 +1,65 @@
+// $(document).ready(function() {
+//   all functions will be here?
+// });
+
+// What are the differences between JavaScript's window.onload and JQuery's $(document).ready() method?
+// The ready event occurs after the HTML document has been loaded, while the onload event occurs later, when all content (e.g. images) also has been loaded.
+//
+// The onload event is a standard event in the DOM, while the ready event is specific to jQuery. The purpose of the ready event is that it should occur as early as possible after the document has loaded, so that code that adds functionality to the elements in the page doesn't have to wait for all content to load.
+
+//generating the alphabet with jquery
+
+var alphabet = 'abcdefghijklmnopqrstuvxyz';
+var wordsArray = ['organic','philantropic','prejudice','kitten'];
+var tagsArray = ['random','random','abstract','nature'];
+var difficultyArray = ['easy','difficult','difficult','easy'];
+var newWord = [];
+
+
+function addAlphabet(alphabet) {
+  var keypad = document.getElementById('keypad');
+
+
+  for(var i = 0; i < alphabet.length; i++) {
+    var letterContainer = document.createElement('kbd');
+    keypad.appendChild(letterContainer);
+    letterContainer.innerHTML += alphabet[i];
+    $("kbd").addClass("light");
+    }
+}
+
+//constructor function for the words objects
+function Words(word,tag,difficulty) {
+  this.word = word;
+  this.tag = tag;
+  this.difficulty = difficulty;
+}
+
+//initializing instances of the Words object
+for(var i = 0; i < wordsArray.length; i++) {
+  newWord[i] = new Words(wordsArray[i],tagsArray[i],difficultyArray[i]);
+}
+
+
+function generateNewWord() {
+  //add 'play' button
+  var $playButton = $('<input type = "button" value = "New Word" />');
+  $("#play").append($playButton).addClass("play-button");
+//add event listener to button
+//when clicked, add event handler to generate new word randomly
+  $(this).bind('click', function() {
+      var randWord = newWord[Math.floor(Math.random() * wordsArray.length)].word;
+      var wordPlaceholder = document.getElementById('word');
+      var placeholder = "";
+      for(var i = 0; i < randWord.length; i++) {
+        placeholder += "-";
+      }
+      wordPlaceholder.innerHTML = placeholder;
+//clear canvas and last play
+
+  });
+
+
+}
+addAlphabet(alphabet);
+generateNewWord();

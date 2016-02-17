@@ -1,0 +1,30 @@
+/*!
+ canvas styling
+ */
+
+#canvas {
+  background-color: lightblue;
+  width: 100%;
+  height: auto;
+}
+
+#keyboard {
+  background-color: yellow;
+}
+
+/*.alphabet ul {
+  display: flex;
+  flex-flow: row-wrap;
+  justify-content: space-around;
+
+}
+
+.alphabet ul li {
+  list-style: none;
+  font-size: 2.5em;
+
+}
+
+.alphabet li:nth-child(3n) {
+  clear:both;
+}*/
