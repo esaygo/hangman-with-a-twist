@@ -19,21 +19,27 @@ var newWord = [];
 function addAlphabet(alphabet) {
   var keypad = document.getElementById('keypad');
 
-
   for(var i = 0; i < alphabet.length; i++) {
     var letterContainer = document.createElement('kbd');
     keypad.appendChild(letterContainer);
+
     letterContainer.innerHTML += alphabet[i];
+
     $("kbd").addClass("light").addClass("letters");
+
     //add unique id for each letter http://stackoverflow.com/questions/28536878/add-div-id-dynamically-using-jquery-to-the-class-element
-    $('.letters:eq(' + alphabet[i]+ ')').attr('id', alphabet[i]);
+    // $('.letters:eq(' + alphabet[i] + ')').attr('id', alphabet[i]);
+    $('.letters').attr('id', function(i) {
+      return alphabet[i];
+    });
   }
+
 }
 
+
+
 //add event listeners for clicking the letters
-$(".light").bind('click', function() {
-  alert( $(this).text() );
-});
+
 //when a letter is clicked, check if that letter is contained in the randWord
   //if it is contained, replace the udderscore with the letter
   //if not .....
@@ -65,11 +71,41 @@ function generateNewWord() {
         placeholder += "_";
       }
       wordPlaceholder.innerHTML = placeholder;
-//clear canvas and last play
+
+      var $wordToGuess = $('<p></p>');
+      $('#test').append($wordToGuess).attr('id', 'guess-word');
+      $('#guess-word').text(randWord).hide();
+      console.log($('#guess-word').text());
+
+      //clear canvas and last play
 
   });
 }
 
+  function play() {
+
+    //selected letter
+    $(".letters").bind('click',function() {
+      var idLetter = $(this).attr('id');
+      console.log(idLetter);
+
+    for(var j = 0; j < $('#guess-word').text().length; j++) {
+      // console.log($('#guess-word').text()[j] == idLetter);
+      if($('#guess-word').text()[j] === idLetter ) {
+
+            var value = $("#word").text();
+            console.log(typeof(value));
+            value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
+            $("#word").text(value);
+            console.log(value);
+
+          
+        }
+    }
+  });
+
+}
 
 addAlphabet(alphabet);
 generateNewWord();
+play();
