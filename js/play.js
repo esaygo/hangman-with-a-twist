@@ -36,8 +36,6 @@ function addAlphabet(alphabet) {
 
 }
 
-
-
 //add event listeners for clicking the letters
 
 //when a letter is clicked, check if that letter is contained in the randWord
@@ -65,6 +63,10 @@ function generateNewWord() {
 //when clicked, add event handler to generate new word randomly
   $("#play").bind('click', function() {
       var randWord = newWord[Math.floor(Math.random() * wordsArray.length)].word;
+
+      //save randWord to local storage
+      localStorage.setItem("word", randWord);
+
       var wordPlaceholder = document.getElementById('word');
       var placeholder = "";
       for(var i = 0; i < randWord.length; i++) {
@@ -72,10 +74,7 @@ function generateNewWord() {
       }
       wordPlaceholder.innerHTML = placeholder;
 
-      var $wordToGuess = $('<p></p>');
-      $('#test').append($wordToGuess).attr('id', 'guess-word');
-      $('#guess-word').text(randWord).hide();
-      console.log($('#guess-word').text());
+
 
       //clear canvas and last play
 
@@ -88,18 +87,22 @@ function generateNewWord() {
     $(".letters").bind('click',function() {
       var idLetter = $(this).attr('id');
       console.log(idLetter);
+      //get randWord out of local storage
 
-    for(var j = 0; j < $('#guess-word').text().length; j++) {
+      if(localStorage.getItem("word")) {
+      var randWord = localStorage.getItem("word");
+      console.log("local storage word: " + randWord);
+    }
+      var value = $("#word").text();
+
+    for(var j = 0; j < randWord.length; j++) {
       // console.log($('#guess-word').text()[j] == idLetter);
-      if($('#guess-word').text()[j] === idLetter ) {
+      if(randWord[j] === idLetter ) {
 
-            var value = $("#word").text();
-            console.log(typeof(value));
-            value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
+        value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
             $("#word").text(value);
-            console.log(value);
+            console.log(value);;
 
-          
         }
     }
   });
