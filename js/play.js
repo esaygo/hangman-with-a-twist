@@ -92,9 +92,14 @@ function generateNewWord() {
     for(var j = 0; j < $('#guess-word').text().length; j++) {
       // console.log($('#guess-word').text()[j] == idLetter);
       if($('#guess-word').text()[j] === idLetter ) {
-            $('#word').text(function() {
-              return $(this).text().replace($('#word').text()[j], idLetter);
-            });
+
+            var value = $("#word").text();
+            console.log(typeof(value));
+            value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
+            $("#word").text(value);
+            console.log(value);
+
+          
         }
     }
   });
