@@ -61,8 +61,17 @@ function drawCanvas() {
     //draw right leg and end the game
     drawLine(ctx, [145,130], [160,170]);
     ctx.fillText('Game over', 45, 110);
-    //remove the alphabet
-    //dislay the correct answer: replace dashes with red letters
-
+    //disable the keypad
+    $(".letters").unbind('click');
+      //dislay the correct answer: replace dashes with red letters
+    var randWord = localStorage.getItem("word");
+    var wordPlaceholder = document.getElementById('word').innerHTML;
+    wordPlaceholder = wordPlaceholder.split("");
+    for(var j = 0; j < randWord.length; j++) {
+        if(wordPlaceholder[j] === "_" ) {
+          wordPlaceholder[j] = '<span style="color: red">' + charAt(j) + '</span>';
+      }
+    }
+    document.getElementById('word').innerHTML = wordPlaceholder.join('');
   }
 }
