@@ -82,7 +82,7 @@ function generateNewWord() {
 }
 
   function play() {
-
+    window.localStorage.removeItem("word");
     //selected letter
     $(".letters").bind('click',function() {
       var idLetter = $(this).attr('id');

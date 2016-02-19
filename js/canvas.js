@@ -69,9 +69,15 @@ function drawCanvas() {
     wordPlaceholder = wordPlaceholder.split("");
     for(var j = 0; j < randWord.length; j++) {
         if(wordPlaceholder[j] === "_" ) {
-          wordPlaceholder[j] = '<span style="color: red">' + charAt(j) + '</span>';
+          wordPlaceholder[j] = '<span style="color: red">' + randWord.charAt(j) + '</span>';
       }
     }
     document.getElementById('word').innerHTML = wordPlaceholder.join('');
+
+    //clear word to be guessed from localStorage
+    window.localStorage.removeItem("word");
+    //clear canvas from previous game
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ctx.beginPath();
   }
 }
