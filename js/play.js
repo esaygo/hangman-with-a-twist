@@ -13,6 +13,7 @@ var alphabet = 'abcdefghijklmnopqrstuvxyz';
 var wordsArray = ['organic','philantropic','prejudice','kitten'];
 var tagsArray = ['random','random','abstract','nature'];
 var difficultyArray = ['easy','difficult','difficult','easy'];
+randomImages = ['img/hang1.jpg', 'img/hang2.jpg'];
 var newWord = [];
 var badGuesses = 0;
 var guessFlag = false;
@@ -83,6 +84,13 @@ function generateNewWord() {
 
   function play() {
     window.localStorage.removeItem("word");
+
+    // clear canvas from previous game
+    var hangMan = document.getElementById("canvas");
+    ctx = hangMan.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ctx.beginPath();
+
     //selected letter
     $(".letters").bind('click',function() {
       var idLetter = $(this).attr('id');
@@ -101,7 +109,8 @@ function generateNewWord() {
         value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
             $("#word").text(value);
             guessFlag = true;
-            console.log(value);
+            $(this).removeClass('light').addClass("dark");
+            console.log($(this));
             console.log("bad guesses is: " + badGuesses);
       }
 

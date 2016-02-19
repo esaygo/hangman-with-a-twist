@@ -11,7 +11,7 @@ function drawCanvas() {
   var hangMan = document.getElementById("canvas");
   ctx = hangMan.getContext('2d');
   //reset canvas and set basic styles
-  canvas.width = canvas.width;
+  // canvas.width = canvas.width;
   ctx.lineWidth = 10;
   ctx.strokeStyle = "green";
   ctx.font = "bold 24px Optimer, Arial, Helvetica, sans-serif";
@@ -76,8 +76,6 @@ function drawCanvas() {
 
     //clear word to be guessed from localStorage
     window.localStorage.removeItem("word");
-    //clear canvas from previous game
-    // ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // ctx.beginPath();
+
   }
 }
