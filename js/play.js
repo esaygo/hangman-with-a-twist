@@ -130,7 +130,9 @@ function generateNewWord() {
         }
 
       if(correctGuesses === randWord.length) {
-        alert("you win!");
+        $("#canvas").css("background-image","url(img/winner.jpg)");
+        //clear canvas
+        canvas.width=canvas.width;
         function generatePlayAgain() {
           //add 'play-again' button
           var $playAgainButton = $('<input type = "button" value = "Play Again?" />');
