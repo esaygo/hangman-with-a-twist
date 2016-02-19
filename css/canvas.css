@@ -4,6 +4,8 @@
 
 #canvas {
   background-color: lightblue;
+  background-image: url("../img/background.jpg");
+  background-size: cover;
   width: 100%;
   height: auto;
 }
