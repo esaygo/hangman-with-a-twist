@@ -14,6 +14,8 @@ var wordsArray = ['organic','philantropic','prejudice','kitten'];
 var tagsArray = ['random','random','abstract','nature'];
 var difficultyArray = ['easy','difficult','difficult','easy'];
 var newWord = [];
+var badGuesses = 0;
+var guessFlag = false;
 
 
 function addAlphabet(alphabet) {
@@ -74,8 +76,6 @@ function generateNewWord() {
       }
       wordPlaceholder.innerHTML = placeholder;
 
-
-
       //clear canvas and last play
 
   });
@@ -95,17 +95,24 @@ function generateNewWord() {
     }
       var value = $("#word").text();
 
+        guessFlag = false;
     for(var j = 0; j < randWord.length; j++) {
-      // console.log($('#guess-word').text()[j] == idLetter);
-      if(randWord[j] === idLetter ) {
-
+        if(randWord[j] === idLetter ) {
         value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
             $("#word").text(value);
-            console.log(value);;
+            guessFlag = true;
+            console.log(value);
+            console.log("bad guesses is: " + badGuesses);
+      }
 
-        }
     }
-  });
+      if(guessFlag === false) {
+            badGuesses ++;
+            //start drawing the man
+            drawCanvas();
+            console.log("else bad guesses is: " + badGuesses);
+        }
+});
 
 }
 
