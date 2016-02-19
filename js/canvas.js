@@ -77,5 +77,26 @@ function drawCanvas() {
     //clear word to be guessed from localStorage
     window.localStorage.removeItem("word");
 
+    function generatePlayAgain() {
+      //add 'play-again' button
+      var $playAgainButton = $('<input type = "button" value = "Play Again?" />');
+      $("#play-again").append($playAgainButton).addClass("play--again-button");
+    //add event listener to button
+    //when clicked, add event handler to refresh page
+
+      $("#play-again").bind('click', function() {
+        //refresh page to clear canvas etc
+          location.reload(true);
+        // $(window).load(function() {
+        //   if (window.location.href.indexOf('reload') == -1) {
+        //     window.location.replace(window.location.href+'?reload');
+        //   }
+        // });
+      });
+
+    }
+    generatePlayAgain();
+
+
   }
 }

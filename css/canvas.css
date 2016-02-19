@@ -42,3 +42,9 @@
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
+#fun-img  {
+  width: 60%;
+  height: 60%;
+  border-radius: 10px;
+}
