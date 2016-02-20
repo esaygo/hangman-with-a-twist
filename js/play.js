@@ -121,8 +121,8 @@ function generateNewWord() {
             //console.log($(this));
             //console.log("bad guesses is: " + badGuesses);
         }
-    }//for
-    if(guessFlag === false) {
+      }//for
+      if(guessFlag === false) {
             badGuesses++;
             $("#fun-img").attr("src", randomImages[Math.floor(Math.random() * randomImages.length)]);
             randomImages[Math.floor(Math.random() * randomImages.length)]
@@ -130,13 +130,13 @@ function generateNewWord() {
             drawCanvas();
 
             //console.log("else bad guesses is: " + badGuesses);
-    }
-    console.log("-----AFTER-----");
-    console.log("badGuesses = " + badGuesses);
-    console.log("correctGuesses = " + correctGuesses);
-    console.log("guessFlag = " + guessFlag);
+      }
+      console.log("-----AFTER-----");
+      console.log("badGuesses = " + badGuesses);
+      console.log("correctGuesses = " + correctGuesses);
+      console.log("guessFlag = " + guessFlag);
 
-    if($("#word").text() === randWord) {
+      if(($("#word").text() === randWord) && correctGuesses === randWord.length) {
       //correctGuesses === randWord.length
         $("#canvas").css("background-image","url(img/winner.jpg)");
         //clear canvas
@@ -144,11 +144,11 @@ function generateNewWord() {
 
         generatePlayAgain();
       }
-});
-
+    });
 }
 function generatePlayAgain() {
   //add 'play-again' button
+  console.log("Generate playagain");
   var $playAgainButton = $('<input type = "button" value = "Play Again?" />');
   $("#play-again").append($playAgainButton).addClass("play-again-button");
   $("#play").hide();
