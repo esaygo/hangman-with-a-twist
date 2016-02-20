@@ -98,6 +98,7 @@ function generateNewWord() {
     $(".letters").bind('click',function() {
       var idLetter = $(this).attr('id');
       $(this).removeClass('light').addClass("dark");
+      $('#' + idLetter).unbind('click');
       console.log("-----BEFORE-----");
       console.log("badGuesses = " + badGuesses);
       console.log("correctGuesses = " + correctGuesses);
@@ -112,16 +113,14 @@ function generateNewWord() {
 
       guessFlag = false;
       for(var j = 0; j < randWord.length; j++) {
-        if(randWord[j] === idLetter ) {
+        if(randWord[j] === idLetter) {
           value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
             $("#word").text(value);
             guessFlag = true;
             correctGuesses++;
-
-            //console.log($(this));
-            //console.log("bad guesses is: " + badGuesses);
         }
-      }//for
+      }
+
       if(guessFlag === false) {
             badGuesses++;
             $("#fun-img").attr("src", randomImages[Math.floor(Math.random() * randomImages.length)]);
