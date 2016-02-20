@@ -10,9 +10,9 @@
 //generating the alphabet with jquery
 
 var alphabet = 'abcdefghijklmnopqrstuvxyz';
-var wordsArray = ['organic','philantropic','prejudice','kitten','codobatura','smurf'];
-var tagsArray = ['random','random','abstract','nature','nature','fantasy'];
-var difficultyArray = ['easy','difficult','difficult','easy','easy','easy'];
+var wordsArray = ['organic','philantropic','prejudice','kitten','codobatura','smurf','piticantrop'];
+var tagsArray = ['random','random','abstract','nature','nature','fantasy','fantasy'];
+var difficultyArray = ['easy','difficult','difficult','easy','easy','easy','difficult'];
 randomImages = ['img/hang1.jpg', 'img/hang2.jpg','img/hang3.jpg', 'img/hang4.jpg','img/hang5.jpg', 'img/hang6.jpg','img/hang7.jpg'];
 var newWord = [];
 var badGuesses = 0;
