@@ -86,6 +86,7 @@ function generateNewWord() {
   function play() {
     window.localStorage.removeItem("word");
     badGuesses = 0;
+    correctGuesses = 0;
 
     // clear canvas from previous game
     var hangMan = document.getElementById("canvas");
@@ -97,61 +98,69 @@ function generateNewWord() {
     $(".letters").bind('click',function() {
       var idLetter = $(this).attr('id');
       $(this).removeClass('light').addClass("dark");
-      console.log(idLetter);
+      console.log("-----BEFORE-----");
+      console.log("badGuesses = " + badGuesses);
+      console.log("correctGuesses = " + correctGuesses);
+      console.log("guessFlag = " + guessFlag);
       //get randWord out of local storage
 
       if(localStorage.getItem("word")) {
-      var randWord = localStorage.getItem("word");
-      console.log("local storage word: " + randWord);
-    }
+        var randWord = localStorage.getItem("word");
+      //console.log("local storage word: " + randWord);
+      }
       var value = $("#word").text();
 
-        guessFlag = false;
-    for(var j = 0; j < randWord.length; j++) {
+      guessFlag = false;
+      for(var j = 0; j < randWord.length; j++) {
         if(randWord[j] === idLetter ) {
-        value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
+          value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
             $("#word").text(value);
             guessFlag = true;
-            correctGuesses ++;
+            correctGuesses++;
 
-            console.log($(this));
-            console.log("bad guesses is: " + badGuesses);
-      }
-
-    }
-      if(guessFlag === false) {
-            badGuesses ++;
+            //console.log($(this));
+            //console.log("bad guesses is: " + badGuesses);
+        }
+    }//for
+    if(guessFlag === false) {
+            badGuesses++;
             $("#fun-img").attr("src", randomImages[Math.floor(Math.random() * randomImages.length)]);
             randomImages[Math.floor(Math.random() * randomImages.length)]
             //start drawing the man
             drawCanvas();
 
-            console.log("else bad guesses is: " + badGuesses);
-        }
+            //console.log("else bad guesses is: " + badGuesses);
+    }
+    console.log("-----AFTER-----");
+    console.log("badGuesses = " + badGuesses);
+    console.log("correctGuesses = " + correctGuesses);
+    console.log("guessFlag = " + guessFlag);
 
-      if(correctGuesses === randWord.length) {
+    if($("#word").text() === randWord) {
+      //correctGuesses === randWord.length
         $("#canvas").css("background-image","url(img/winner.jpg)");
         //clear canvas
         canvas.width=canvas.width;
-        function generatePlayAgain() {
-          //add 'play-again' button
-          var $playAgainButton = $('<input type = "button" value = "Play Again?" />');
-          $("#play-again").append($playAgainButton).addClass("play--again-button");
-        //add event listener to button
-        //when clicked, add event handler to refresh page
 
-          $("#play-again").bind('click', function() {
-            //refresh page to clear canvas etc
-            location.reload(true);
-          });
-
-        }
         generatePlayAgain();
       }
 });
 
 }
+function generatePlayAgain() {
+  //add 'play-again' button
+  var $playAgainButton = $('<input type = "button" value = "Play Again?" />');
+  $("#play-again").append($playAgainButton).addClass("play-again-button");
+  $("#play").hide();
+//add event listener to button
+//when clicked, add event handler to refresh page
 
+  $("#play-again").bind('click', function() {
+    //refresh page to clear canvas etc
+    location.reload(true);
+    $("#play").show();
+  });
+}
 addAlphabet(alphabet);
 generateNewWord();
 play();
