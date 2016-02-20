@@ -11,7 +11,7 @@ function drawCanvas() {
   var hangMan = document.getElementById("canvas");
   ctx = hangMan.getContext('2d');
   //reset canvas and set basic styles
-  canvas.width = canvas.width;
+  // canvas.width = canvas.width;
   ctx.lineWidth = 10;
   ctx.strokeStyle = "green";
   ctx.font = "bold 24px Optimer, Arial, Helvetica, sans-serif";
@@ -69,9 +69,34 @@ function drawCanvas() {
     wordPlaceholder = wordPlaceholder.split("");
     for(var j = 0; j < randWord.length; j++) {
         if(wordPlaceholder[j] === "_" ) {
-          wordPlaceholder[j] = '<span style="color: red">' + charAt(j) + '</span>';
+          wordPlaceholder[j] = '<span style="color: red">' + randWord.charAt(j) + '</span>';
       }
     }
     document.getElementById('word').innerHTML = wordPlaceholder.join('');
+
+    //clear word to be guessed from localStorage
+    window.localStorage.removeItem("word");
+
+    function generatePlayAgain() {
+      //add 'play-again' button
+      var $playAgainButton = $('<input type = "button" value = "Play Again?" />');
+      $("#play-again").append($playAgainButton).addClass("play--again-button");
+    //add event listener to button
+    //when clicked, add event handler to refresh page
+
+      $("#play-again").bind('click', function() {
+        //refresh page to clear canvas etc
+          location.reload(true);
+        // $(window).load(function() {
+        //   if (window.location.href.indexOf('reload') == -1) {
+        //     window.location.replace(window.location.href+'?reload');
+        //   }
+        // });
+      });
+
+    }
+    generatePlayAgain();
+
+
   }
 }

@@ -10,11 +10,13 @@
 //generating the alphabet with jquery
 
 var alphabet = 'abcdefghijklmnopqrstuvxyz';
-var wordsArray = ['organic','philantropic','prejudice','kitten'];
-var tagsArray = ['random','random','abstract','nature'];
-var difficultyArray = ['easy','difficult','difficult','easy'];
+var wordsArray = ['organic','philantropic','prejudice','kitten','codobatura','smurf'];
+var tagsArray = ['random','random','abstract','nature','nature','fantasy'];
+var difficultyArray = ['easy','difficult','difficult','easy','easy','easy'];
+randomImages = ['img/hang1.jpg', 'img/hang2.jpg','img/hang3.jpg', 'img/hang4.jpg','img/hang5.jpg', 'img/hang6.jpg','img/hang7.jpg'];
 var newWord = [];
 var badGuesses = 0;
+var correctGuesses = 0;
 var guessFlag = false;
 
 
@@ -82,10 +84,19 @@ function generateNewWord() {
 }
 
   function play() {
+    window.localStorage.removeItem("word");
+    badGuesses = 0;
+
+    // clear canvas from previous game
+    var hangMan = document.getElementById("canvas");
+    ctx = hangMan.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ctx.beginPath();
 
     //selected letter
     $(".letters").bind('click',function() {
       var idLetter = $(this).attr('id');
+      $(this).removeClass('light').addClass("dark");
       console.log(idLetter);
       //get randWord out of local storage
 
@@ -101,17 +112,42 @@ function generateNewWord() {
         value = value.substr(0, j) + idLetter +value.substr(j+1, value.length);
             $("#word").text(value);
             guessFlag = true;
-            console.log(value);
+            correctGuesses ++;
+
+            console.log($(this));
             console.log("bad guesses is: " + badGuesses);
       }
 
     }
       if(guessFlag === false) {
             badGuesses ++;
+            $("#fun-img").attr("src", randomImages[Math.floor(Math.random() * randomImages.length)]);
+            randomImages[Math.floor(Math.random() * randomImages.length)]
             //start drawing the man
             drawCanvas();
+
             console.log("else bad guesses is: " + badGuesses);
         }
+
+      if(correctGuesses === randWord.length) {
+        $("#canvas").css("background-image","url(img/winner.jpg)");
+        //clear canvas
+        canvas.width=canvas.width;
+        function generatePlayAgain() {
+          //add 'play-again' button
+          var $playAgainButton = $('<input type = "button" value = "Play Again?" />');
+          $("#play-again").append($playAgainButton).addClass("play--again-button");
+        //add event listener to button
+        //when clicked, add event handler to refresh page
+
+          $("#play-again").bind('click', function() {
+            //refresh page to clear canvas etc
+            location.reload(true);
+          });
+
+        }
+        generatePlayAgain();
+      }
 });
 
 }
