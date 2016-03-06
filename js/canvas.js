@@ -17,7 +17,7 @@ function drawCanvas() {
   ctx.font = "bold 24px Optimer, Arial, Helvetica, sans-serif";
   ctx.fillStyle = "red";
   //draw the ground
-  drawLine(ctx, [20,190], [180,190]);
+  drawLine(ctx, [20,390], [180,390]);
   //start drawing the gallows for each bad guess
 
   if(badGuesses > 0) {
