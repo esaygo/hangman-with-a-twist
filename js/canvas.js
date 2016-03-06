@@ -23,10 +23,10 @@ function drawCanvas() {
   if(badGuesses > 0) {
     //create the upright
     ctx.strokeStyle = "#A52A2A";
-    drawLine(ctx, [30,185], [30,10]);
+    drawLine(ctx, [30,385], [30,200]);
     if(badGuesses > 1) {
       //create the arm of the gallows
-      ctx.lineTo(150,10);
+      ctx.lineTo(150,200);
       ctx.stroke();
     }
   }
@@ -34,32 +34,32 @@ function drawCanvas() {
     ctx.strokeStyle = "#000";
     ctx.lineWidth = 3;
     //draw rope
-    drawLine(ctx, [145,15], [145,30]);
+    drawLine(ctx, [145,205], [145,230]);
     //draw head
     ctx.beginPath();
-    ctx.moveTo(160,45);
-    ctx.arc(145,45,15,0, (Math.PI/180) * 360);
+    // ctx.moveTo(145 ,250);
+    ctx.arc(145,245,15,0, (Math.PI/180) * 360);
     ctx.stroke();
   }
   if(badGuesses > 3) {
     //draw body
-    drawLine(ctx, [145,60], [145,130]);
+    drawLine(ctx, [145,260], [145,300]);
   }
   if(badGuesses > 4) {
     //draw left arm
-    drawLine(ctx, [145,80],[110,90]);
+    drawLine(ctx, [145,300],[110,270]);
   }
   if(badGuesses > 5) {
     //draw right arm
-    drawLine(ctx, [145,80], [180,90]);
+    drawLine(ctx, [145,300], [180,270]);
   }
   if(badGuesses > 6) {
     //draw left leg
-    drawLine(ctx, [145,130], [130,170]);
+    drawLine(ctx, [145,300], [130,370]);
   }
   if(badGuesses > 7) {
     //draw right leg and end the game
-    drawLine(ctx, [145,130], [160,170]);
+    drawLine(ctx, [145,300], [160,370]);
     ctx.fillText('Game over', 45, 110);
     //disable the keypad
     $(".letters").unbind('click');
